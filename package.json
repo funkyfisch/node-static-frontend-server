@@ -1,0 +1,20 @@
+{
+  "name": "static-server",
+  "version": "1.0.0",
+  "description": "A nodejs express server to serve built apps",
+  "author": "Ioannis Gkikas",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "connect-history-api-fallback": "1.6.0",
+    "express": "4.17.1",
+    "http-proxy-middleware": "1.0.1",
+    "serve-static": "1.14.1"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  }
+}
