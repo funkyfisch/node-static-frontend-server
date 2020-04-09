@@ -74,8 +74,8 @@ const validateConfiguration = function(configuration) {
   }
 }
 
-const getApiConfiguration = function() {
-  const config = JSON.parse(fs.readFileSync("apiConfiguration.json"))
+const getApiConfiguration = function(configurationFilePath) {
+  const config = JSON.parse(fs.readFileSync(configurationFilePath))
   validateConfiguration(config)
   return config
 }

@@ -10,8 +10,8 @@ const { generateProxies } = require("./proxyGenerator.js")
 
 const UI_PORT = process.env.UI_PORT
 
-const startStaticServer = () => {
-  const apiConfig = getApiConfiguration()
+const startStaticServer = configurationFilePath => {
+  const apiConfig = getApiConfiguration(configurationFilePath)
   const app = express()
 
   const middleware = history({

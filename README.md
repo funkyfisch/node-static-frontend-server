@@ -8,3 +8,4 @@ A template parametric static server, for serving your built &amp; minified front
 - Handle http vs https
 - add npmignore file for ignoring specific files from being published
 - add tests
+- add proper output for the different errors
