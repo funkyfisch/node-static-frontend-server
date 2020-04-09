@@ -1,9 +1,22 @@
 {
-  "name": "static-server",
-  "version": "1.0.0",
-  "description": "A nodejs express server to serve built apps",
+  "name": "static-frontend-server",
+  "version": "0.1.1",
+  "description": "An express server to serve built apps, supporting configurable proxies",
   "author": "Ioannis Gkikas",
-  "private": true,
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/funkyfisch/node-static-frontend-server"
+  },
+  "keywords": [
+    "express",
+    "frontend",
+    "static",
+    "server",
+    "proxy",
+    "proxied",
+    "configuration"
+  ],
+  "private": false,
   "scripts": {
     "start": "node index.js"
   },
