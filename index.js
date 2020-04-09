@@ -8,21 +8,26 @@ const { generateProxies } = require("./proxyGenerator.js")
 
 const UI_PORT = process.env.UI_PORT
 
-const apiConfig = getApiConfiguration()
+const startStaticServer = () => {
+  const apiConfig = getApiConfiguration()
+  const app = express()
 
-const app = express()
+  const middleware = history({
+    verbose: true
+  })
+  app.use(serveStatic(__dirname + "/dist"))
+  app.use(middleware)
 
-const middleware = history({
-  verbose: true
-})
-app.use(serveStatic(__dirname + "/dist"))
-app.use(middleware)
+  let proxies = generateProxies(apiConfig)
 
-let proxies = generateProxies(apiConfig)
+  for (const p of proxies) {
+    app.use(createProxyMiddleware(p.endpointString, p))
+  }
 
-for (const p of proxies) {
-  app.use(createProxyMiddleware(p.endpointString, p))
+  console.log(`App listening at port: ${UI_PORT}`)
+  app.listen(UI_PORT)
 }
 
-console.log(`App listening at port: ${UI_PORT}`)
-app.listen(UI_PORT)
+module.exports = {
+  startStaticServer
+}
