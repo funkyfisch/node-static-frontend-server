@@ -5,13 +5,7 @@ const history = require("connect-history-api-fallback")
 const { createProxyMiddleware } = require("http-proxy-middleware")
 const UI_PORT = process.env.UI_PORT
 
-let apiConfig
-try {
-  apiConfig = fs.readFileSync("apiConfiguration.json")
-  apiConfig = JSON.parse(apiConfig)
-} catch (error) {
-  throw new Error("Please create a valid configuration file for your APIs")
-}
+const apiConfig = JSON.parse(fs.readFileSync("apiConfiguration.json"))
 
 const app = express()
 
