@@ -16,7 +16,7 @@ const startStaticServer = (setupProxyTable, configurationFilePath) => {
   const middleware = history({
     verbose: true
   })
-  app.use(serveStatic(process.cwd + "/dist"))
+  app.use(serveStatic(process.cwd() + "/dist"))
   app.use(middleware)
 
   if (setupProxyTable) {
