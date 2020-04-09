@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Configuration file - this is instance specific therefore we dont want to
+# actually commit this
+apiConfiguration.json
