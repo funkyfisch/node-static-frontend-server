@@ -86,3 +86,4 @@ and finally will serve your built Vue files at the defined UI_PORT
 - add ability to read the serving port from command line and override the env variable UI_PORT
 - add CI and packaging ability for standalone binary
 - check presence of dist folder and its contents
+- add ability to not use a config file if no proxies are needed
