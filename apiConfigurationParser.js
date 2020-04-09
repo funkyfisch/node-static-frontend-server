@@ -13,12 +13,21 @@ const validateConfiguration = function(configuration) {
       && endpoint.endpointString.startsWith("/")
     )
     assert(
+      // this checks if the variable is defined in the configuration
       typeof(endpoint.host) === "string"
+      // this checks if it has a proper variable name
       && envVarRegex.test(endpoint.host)
+      // this checks if it is defined in environment
+      && typeof(process.env[endpoint.host]) === "string"
+      // this checks if it is a proper hostname value
       && hostnameRegex.test(process.env[endpoint.host])
     )
     assert(
       typeof(endpoint.port) === "string"
+      && envVarRegex.test(endpoint.port)
+      && typeof(process.env[endpoint.port]) === "string"
+      && parseInt(process.env[endpoint.port]) > 0
+      && parseInt(process.env[endpoint.port]) < 65535
     )
     if (endpoint.authentication === true) {
       assert(
