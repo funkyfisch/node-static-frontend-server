@@ -1,11 +1,11 @@
-const fs = require("fs")
 const express = require("express")
 const serveStatic = require("serve-static")
 const history = require("connect-history-api-fallback")
 const { createProxyMiddleware } = require("http-proxy-middleware")
 const UI_PORT = process.env.UI_PORT
+const { getApiConfiguration } = require("./apiConfigurationParser")
 
-const apiConfig = JSON.parse(fs.readFileSync("apiConfiguration.json"))
+const apiConfig = getApiConfiguration()
 
 const app = express()
 
