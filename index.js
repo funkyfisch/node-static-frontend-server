@@ -26,6 +26,8 @@ json file. What we would really like is to map each api endpoint defined in the
 json file into environment variable strings and then evaluate them here,
 so that all this deployment dependent configuration can be defined in the
 environment instead of a file */
+
+/* Find way to configure http vs https */
 for (const endpoint of apiConfig.endpoints) {
   const regexEndpointString = `^${endpoint.endpointString}`
 
@@ -37,7 +39,7 @@ for (const endpoint of apiConfig.endpoints) {
     }
   }
   if (endpoint.authentication === true) {
-    proxy.auth = `${endpoint.user}:${endpoint.password}`
+    proxy.auth = `${endpoint.username}:${endpoint.password}`
   }
 
   app.use([endpoint.endpointString], createProxyMiddleware(proxy))
