@@ -2,8 +2,8 @@ const assert = require("assert")
 const fs = require("fs")
 
 const validateConfiguration = function(configuration) {
-  const envVarRegex = RegExp(/[A-Za-z0-9_]+/g)
-  const hostnameRegex = RegExp(/^(http:\/\/||https:\/\/)[A-Za-z0-9.\-_]+$/)
+  const envVarRegex = RegExp(/^[A-Za-z0-9_]+$/)
+  const hostnameRegex = RegExp(/^(http:\/\/||https:\/\/){0,1}[A-Za-z0-9.\-_]+$/)
 
   assert(Array.isArray(configuration.endpoints))
 
