@@ -79,7 +79,6 @@ and finally will serve your built Vue files at the defined UI_PORT
 
 ## TODOs
 
-- Parse command line argument to custom config file
 - Handle http vs https
 - add tests
 - add proper output for the different errors
@@ -87,3 +86,4 @@ and finally will serve your built Vue files at the defined UI_PORT
 - add CI and packaging ability for standalone binary
 - check presence of dist folder and its contents
 - add ability to not use a config file if no proxies are needed
+- add ability to select location of /dist folder

@@ -10,20 +10,22 @@ const { generateProxies } = require("./proxyGenerator.js")
 
 const UI_PORT = process.env.UI_PORT
 
-const startStaticServer = configurationFilePath => {
-  const apiConfig = getApiConfiguration(configurationFilePath)
+const startStaticServer = (setupProxyTable, configurationFilePath) => {
   const app = express()
 
   const middleware = history({
     verbose: true
   })
-  app.use(serveStatic(__dirname + "/dist"))
+  app.use(serveStatic(process.cwd + "/dist"))
   app.use(middleware)
 
-  let proxies = generateProxies(apiConfig)
+  if (setupProxyTable) {
+    const apiConfig = getApiConfiguration(configurationFilePath)
+    let proxies = generateProxies(apiConfig)
 
-  for (const p of proxies) {
-    app.use(createProxyMiddleware(p.endpointString, p))
+    for (const p of proxies) {
+      app.use(createProxyMiddleware(p.endpointString, p))
+    }
   }
 
   console.log(`App listening at port: ${UI_PORT}`)

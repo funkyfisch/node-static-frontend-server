@@ -16,6 +16,10 @@ for (let i = 2; i < process.argv.length; i++) {
   }
 }
 
-if (!configurationFilePath) throw new Error("use the -c/--api-config option to define config file")
-
-startStaticServer(configurationFilePath)
+if (!configurationFilePath) {
+  console.log("No api configuration file provided. Skipping proxy table creation")
+  startStaticServer(false)
+} else {
+  console.log("Creating proxy table...")
+  startStaticServer(true, configurationFilePath)
+}

@@ -1,6 +1,6 @@
 {
   "name": "static-frontend-server",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "An express server to serve built apps, supporting configurable proxies",
   "author": "Ioannis Gkikas",
   "license": "MIT",
