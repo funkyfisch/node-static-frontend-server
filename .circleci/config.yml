@@ -14,6 +14,19 @@ workflows:
               branches:
                 ignore: master
 
+    on-master-merge:
+      jobs:
+        - install-dependencies:
+            filters:
+              branches:
+                only: master
+        - compile-package:
+            requires:
+              - install-dependencies
+            filters:
+              branches:
+                only: master
+
 
 jobs:
   install-dependencies:
@@ -44,3 +57,13 @@ jobs:
       - attach_workspace:
           at: .
       - run: npm run lint
+
+  compile-package:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/node-static-frontend-server
+    steps:
+      - attach_workspace:
+          at: .
+      - run: npm install pkg
+      - run: pkg --target node12-linux .
