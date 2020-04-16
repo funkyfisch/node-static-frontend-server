@@ -8,6 +8,8 @@ workflows:
               branches:
                 ignore: master
         - lint-unit-test:
+            requires:
+              - install-dependencies
             filters:
               branches:
                 ignore: master
