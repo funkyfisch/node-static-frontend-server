@@ -48,7 +48,7 @@ jobs:
       - checkout
       - run: |
           modified_files=$(git diff HEAD..HEAD~1 --name-only --diff-filter=M)
-          if [[ modified_files == "README.md"]]
+          if [[ "$modified_files" == "README.md"]]
           then
             circleci-agent step halt
           fi
