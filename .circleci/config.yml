@@ -1,23 +1,44 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@1.1.6
-
-jobs:
-  build-and-test:
-    executor:
-      name: node/default
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm run lint
-
 workflows:
     on-pull-request-update:
       jobs:
-        - build-and-test:
+        - install-dependencies:
             filters:
               branches:
                 ignore: master
+        - lint-unit-test:
+            filters:
+              branches:
+                ignore: master
+
+
+jobs:
+  install-dependencies:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/node-static-frontend-server
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-npm-deps-
+      - run: npm install
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v1-npm-{{ checksum "package-lock.json" }}
+
+  lint-unit-test:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/node-static-frontend-server
+    steps:
+      - attach_workspace:
+          at: .
+      - run: npm run lint
