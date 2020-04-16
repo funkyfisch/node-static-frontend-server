@@ -66,4 +66,4 @@ jobs:
       - attach_workspace:
           at: .
       - run: npm install pkg
-      - run: pkg --target node12-linux .
+      - run: ./node_modules/.bin/pkg --target node12-linux .
