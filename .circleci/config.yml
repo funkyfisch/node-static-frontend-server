@@ -3,7 +3,13 @@ version: 2.1
 workflows:
     on-pull-request-update:
       jobs:
+        - determine-job-necessity:
+            filters:
+              branches:
+                ignore: master
         - install-dependencies:
+            requires:
+              - determine-job-necessity
             filters:
               branches:
                 ignore: master
@@ -16,7 +22,13 @@ workflows:
 
     on-master-merge:
       jobs:
+        - determine-job-necessity:
+            filters:
+              branches:
+                only: master
         - install-dependencies:
+            requires:
+              - determine-job-necessity
             filters:
               branches:
                 only: master
@@ -29,6 +41,18 @@ workflows:
 
 
 jobs:
+  determine-job-necessity:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run: |
+          modified_files=$(git diff HEAD..HEAD~1 --name-only --diff-filter=M)
+          if [[ "$modified_files" == "README.md" ]]
+          then
+            circleci-agent step halt
+          fi
+
   install-dependencies:
     docker:
       - image: circleci/node:lts
