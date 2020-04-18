@@ -81,6 +81,7 @@ jobs:
       - attach_workspace:
           at: .
       - run: npm run lint
+      - run: npm run test:unit
 
   compile-package:
     docker:

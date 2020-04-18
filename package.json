@@ -1,6 +1,6 @@
 {
   "name": "static-frontend-server",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "An express server to serve built apps, supporting configurable proxies",
   "author": "Ioannis Gkikas",
   "license": "MIT",
@@ -19,7 +19,8 @@
   "private": false,
   "scripts": {
     "start": "node index.js",
-    "lint": "./node_modules/.bin/eslint *.js"
+    "lint": "./node_modules/.bin/eslint *.js",
+    "test:unit": "jest"
   },
   "bin": {
     "static-frontend-server": "./cli.js"
@@ -35,6 +36,7 @@
     "npm": ">= 3.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0"
+    "eslint": "^6.8.0",
+    "jest": "^25.3.0"
   }
 }
