@@ -2,6 +2,8 @@
 
 A template parametric static server, for serving your built &amp; minified frontend app files
 
+[![funkyfisch](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield)](https://app.circleci.com/pipelines/github/funkyfisch/node-static-frontend-server?branch=master)
+
 ## Description
 
 Let's say you have a directory /dist where all your built and minified front-end files live in.
