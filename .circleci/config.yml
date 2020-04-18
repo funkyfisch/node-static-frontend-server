@@ -38,6 +38,12 @@ workflows:
             filters:
               branches:
                 only: master
+        - publish:
+            requires:
+              - install-dependencies
+            filters:
+              branches:
+                only: master
 
 
 jobs:
@@ -92,3 +98,17 @@ jobs:
           at: .
       - run: npm install pkg
       - run: ./node_modules/.bin/pkg --target node12-linux .
+
+  publish:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/node-static-frontend-server
+    steps:
+      - attach_workspace:
+          at: .
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - run: git diff HEAD..HEAD~1 package.json | grep -q "\"version\":"
+      - run:
+          name: publish module if package.json changed
+          command: npm publish
+          when: on_fail
