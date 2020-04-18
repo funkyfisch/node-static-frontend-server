@@ -2,7 +2,7 @@
 
 "use strict"
 
-const { startStaticServer } = require("./index")
+const { startStaticServer } = require("./src")
 
 let configurationFilePath
 
