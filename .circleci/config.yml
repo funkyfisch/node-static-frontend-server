@@ -107,8 +107,8 @@ jobs:
       - attach_workspace:
           at: .
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-      - run: git diff HEAD..HEAD~1 package.json | grep -q "\"version\":"
-      - run:
-          name: publish module if package.json changed
-          command: npm publish
-          when: on_fail
+      - run: |
+          if git diff HEAD..HEAD~1 package.json | grep -q "\"version\":"
+          then
+            npm publish
+          fi
