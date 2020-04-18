@@ -4,6 +4,8 @@ A template parametric static server, for serving your built &amp; minified front
 
 [![funkyfisch](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield)](https://app.circleci.com/pipelines/github/funkyfisch/node-static-frontend-server?branch=master)
 
+![npm](https://img.shields.io/npm/v/static-frontend-server)
+
 ## Description
 
 Let's say you have a directory /dist where all your built and minified front-end files live in.
