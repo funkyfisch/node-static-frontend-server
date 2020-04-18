@@ -3,7 +3,6 @@
 A template parametric static server, for serving your built &amp; minified frontend app files
 
 [![funkyfisch](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield)](https://app.circleci.com/pipelines/github/funkyfisch/node-static-frontend-server?branch=master)
-
 ![npm](https://img.shields.io/npm/v/static-frontend-server)
 
 ## Description
