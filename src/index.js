@@ -1,5 +1,8 @@
 "use-strict"
 
+const fs = require("fs")
+const path = require("path")
+
 const express = require("express")
 const serveStatic = require("serve-static")
 const history = require("connect-history-api-fallback")
@@ -10,13 +13,23 @@ const { generateProxies } = require("./proxyGenerator.js")
 
 const UI_PORT = process.env.UI_PORT
 
+const checkContentsToServe = pathToStaticContent => {
+  if (!fs.existsSync(pathToStaticContent + path.sep + "index.html")) {
+    throw new Error(`There is no index.html to serve under ${pathToStaticContent}`)
+  }
+}
+
 const startStaticServer = (setupProxyTable, configurationFilePath) => {
+  const pathToStaticContent = process.cwd() + path.sep + "dist"
+  checkContentsToServe(pathToStaticContent)
+
   const app = express()
 
   const middleware = history({
     verbose: true
   })
-  app.use(serveStatic(process.cwd() + "/dist"))
+
+  app.use(serveStatic(pathToStaticContent))
   app.use(middleware)
 
   if (setupProxyTable) {
