@@ -69,7 +69,8 @@ You also have to provide the port at which this server will be listening
 export UI_PORT=9001
 ```
 
-Finally, inside the directory where your /dist folder lives, run the following:
+Finally, inside the directory where your /dist folder lives
+(which HAS to include an index.html file), run the following:
 
 ```bash
 static-frontend-server -c your-config-file.json
@@ -79,14 +80,3 @@ This tool will read the above configuration file,
 evaluate the environment variables that you reference,
 create the two proxy definitions
 and finally will serve your built Vue files at the defined UI_PORT
-
-## TODOs
-
-- Handle http vs https
-- add tests
-- add proper output for the different errors
-- add ability to read the serving port from command line and override the env variable UI_PORT
-- add CI and packaging ability for standalone binary
-- check presence of dist folder and its contents
-- add ability to not use a config file if no proxies are needed
-- add ability to select location of /dist folder
