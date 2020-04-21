@@ -29,9 +29,6 @@ const startStaticServer = (setupProxyTable, configurationFilePath) => {
     verbose: true
   })
 
-  app.use(serveStatic(pathToStaticContent))
-  app.use(middleware)
-
   if (setupProxyTable) {
     const apiConfig = getApiConfiguration(configurationFilePath)
     let proxies = generateProxies(apiConfig)
@@ -41,6 +38,8 @@ const startStaticServer = (setupProxyTable, configurationFilePath) => {
     }
   }
 
+  app.use(middleware)
+  app.use(serveStatic(pathToStaticContent))
   console.log(`App listening at port: ${UI_PORT}`)
   app.listen(UI_PORT)
 }
