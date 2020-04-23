@@ -1,3 +1,5 @@
+"use-strict"
+
 /* Find way to configure http vs https */
 const generateProxies = apiConfig => {
   let proxies = []
@@ -7,7 +9,7 @@ const generateProxies = apiConfig => {
     let trueHost
     if (
       !process.env[endpoint.host].startsWith("https://")
-        && !process.env[endpoint.host].startsWith("http://")
+      && !process.env[endpoint.host].startsWith("http://")
     ) {
       trueHost = `http://${process.env[endpoint.host]}`
     } else {
